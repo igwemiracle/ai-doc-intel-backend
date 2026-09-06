@@ -12,7 +12,8 @@ interface SearchResult {
 export async function searchChunks(
   query: string,
   userId: string,
-  limit: number = 5
+  limit: number = 5,
+  documentId?: string
 ): Promise<SearchResult[]> {
   const queryEmbedding = await generateEmbedding(query);
   const vectorString = `[${queryEmbedding.join(",")}]`;
@@ -27,6 +28,7 @@ export async function searchChunks(
     FROM "Chunk"
     JOIN "Document" ON "Chunk"."documentId" = "Document".id
     WHERE "Document"."userId" = ${userId}
+      AND (${documentId}::text IS NULL OR "Document".id = ${documentId})
     ORDER BY distance ASC
     LIMIT ${limit}
   `;

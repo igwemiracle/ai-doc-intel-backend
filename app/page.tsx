@@ -110,7 +110,7 @@ export default async function Home() {
                 </div>
                 <span className="text-[11px] font-medium text-emerald-500 flex items-center gap-1">
                   <span className="h-1.5 w-1.5 rounded-full bg-emerald-500 animate-ping" />
-                  Gemini 2.5 Active
+                  Gemini 3.6 Active
                 </span>
               </div>
 

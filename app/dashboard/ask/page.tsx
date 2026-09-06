@@ -17,17 +17,17 @@ import { AIAnswerView } from "@/components/ai-answer-view";
 export default async function AskPage({
   searchParams,
 }: {
-  searchParams: Promise<{ q?: string }>;
+  searchParams: Promise<{ q?: string; documentId?: string }>;
 }) {
   const session = await auth();
   if (!session?.user?.id) {
     redirect("/login");
   }
 
-  const { q } = await searchParams;
+  const { q, documentId } = await searchParams;
   const question = q?.trim() ?? "";
   const result = question
-    ? await generateAnswer(question, session.user.id)
+    ? await generateAnswer(question, session.user.id, documentId)
     : null;
 
   const promptSuggestions = [
@@ -51,6 +51,7 @@ export default async function AskPage({
       <Card className="border-border/60 shadow-sm">
         <CardContent className="p-6">
           <form method="GET" className="space-y-4">
+            {documentId && <input type="hidden" name="documentId" value={documentId} />}
             <div className="relative flex items-center">
               <Sparkles className="absolute left-3.5 h-4 w-4 text-primary" />
               <Input
@@ -84,6 +85,8 @@ export default async function AskPage({
                 </Link>
               ))}
             </div>
+
+
           </form>
         </CardContent>
       </Card>

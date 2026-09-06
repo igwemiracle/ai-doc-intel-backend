@@ -147,22 +147,20 @@ export function AIAnswerView({
               return (
                 <Card
                   key={i}
-                  className={`border transition-all ${
-                    isCited
+                  className={`border transition-all ${isCited
                       ? "border-emerald-500/30 bg-card shadow-sm hover:border-emerald-500/50"
                       : "border-border/60 bg-muted/10 hover:border-border"
-                  }`}
+                    }`}
                 >
                   <CardContent className="p-4 space-y-3">
                     {/* Header with Source Index & Badges */}
                     <div className="flex flex-wrap items-center justify-between gap-2 border-b border-border/40 pb-2.5">
                       <div className="flex items-center gap-2">
                         <span
-                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-[11px] font-bold ${
-                            isCited
+                          className={`flex h-5 w-5 shrink-0 items-center justify-center rounded-md text-[11px] font-bold ${isCited
                               ? "bg-emerald-500 text-white"
                               : "bg-muted text-muted-foreground"
-                          }`}
+                            }`}
                         >
                           {i + 1}
                         </span>

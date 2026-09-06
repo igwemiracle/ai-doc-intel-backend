@@ -95,8 +95,8 @@ export function DashboardNav({
                 href={item.href}
                 onClick={() => setMobileOpen(false)}
                 className={`group relative flex items-center gap-3 rounded-lg px-3 py-2.5 text-sm font-medium transition-all duration-150 ${active
-                    ? "bg-primary text-primary-foreground shadow-sm shadow-primary/25"
-                    : "text-muted-foreground hover:bg-muted/80 hover:text-foreground"
+                  ? "bg-primary text-primary-foreground shadow-sm shadow-primary/25"
+                  : "text-muted-foreground hover:bg-muted/80 hover:text-foreground"
                   }`}
               >
                 <Icon
@@ -116,7 +116,7 @@ export function DashboardNav({
         <div className="rounded-xl border border-border/60 bg-muted/30 p-3 text-xs space-y-2">
           <div className="flex items-center gap-1.5 font-medium text-foreground">
             <Database className="h-3.5 w-3.5 text-emerald-500" />
-            <span>pgvector + Gemini 2.5</span>
+            <span>pgvector + Gemini 3.6</span>
           </div>
           <p className="text-[11px] text-muted-foreground leading-relaxed">
             Vector embeddings active with 768-dim similarity search.

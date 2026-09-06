@@ -2,7 +2,7 @@ import { GoogleGenAI } from "@google/genai";
 import { searchChunks } from "@/lib/search";
 
 const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
-const CHAT_MODEL = "gemini-3.6-flash";
+const CHAT_MODEL = "gemini-3.8-flash";
 
 interface RAGResponse {
   answer: string;
@@ -11,9 +11,10 @@ interface RAGResponse {
 
 export async function generateAnswer(
   question: string,
-  userId: string
+  userId: string,
+  documentId?: string
 ): Promise<RAGResponse> {
-  const chunks = await searchChunks(question, userId, 5);
+  const chunks = await searchChunks(question, userId, 5, documentId);
 
   if (chunks.length === 0) {
     return {

@@ -185,8 +185,8 @@ export function DocumentList({ documents }: { documents: Document[] }) {
               key={status}
               onClick={() => setStatusFilter(status)}
               className={`rounded-md px-2.5 py-1 text-xs font-medium transition-all ${statusFilter === status
-                  ? "bg-card text-foreground shadow-xs font-semibold"
-                  : "text-muted-foreground hover:text-foreground"
+                ? "bg-card text-foreground shadow-xs font-semibold"
+                : "text-muted-foreground hover:text-foreground"
                 }`}
             >
               {status === "ALL"
@@ -264,8 +264,8 @@ export function DocumentList({ documents }: { documents: Document[] }) {
                           >
                             <StatusIcon
                               className={`h-3 w-3 ${isThisRowPending && actionType === "process"
-                                  ? "animate-spin"
-                                  : ""
+                                ? "animate-spin"
+                                : ""
                                 }`}
                             />
                             {label}
@@ -350,7 +350,7 @@ export function DocumentList({ documents }: { documents: Document[] }) {
                                 variant="outline"
                                 className="h-8 gap-1 text-xs"
                               >
-                                <Link href={`/dashboard/ask?q=Summarize key points from ${encodeURIComponent(doc.fileName)}`}>
+                                <Link href={`/dashboard/ask?documentId=${doc.id}&q=Summarize key points from ${encodeURIComponent(doc.fileName)}`}>
                                   <Sparkles className="h-3 w-3 text-primary" />
                                   <span>Ask</span>
                                 </Link>
