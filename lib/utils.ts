@@ -1,10 +1,3 @@
-import { clsx, type ClassValue } from "clsx"
-import { twMerge } from "tailwind-merge"
-
-export function cn(...inputs: ClassValue[]) {
-  return twMerge(clsx(inputs))
-}
-
 export function formatFileSize(bytes: number): string {
   if (bytes === 0) return "0 B";
   const mb = bytes / (1024 * 1024);
@@ -25,4 +18,3 @@ export function formatDate(date: Date | string): string {
     timeStyle: "short",
   }).format(d);
 }
-

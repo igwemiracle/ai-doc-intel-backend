@@ -1,8 +1,16 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
+function getAiClient(): GoogleGenAI {
+  const apiKey = process.env.GEMINI_API_KEY || "placeholder-key";
+  return new GoogleGenAI({ apiKey });
+}
 
 export async function generateEmbedding(text: string): Promise<number[]> {
+  if (!process.env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY environment variable is required to generate embeddings.");
+  }
+
+  const ai = getAiClient();
   const response = await ai.models.embedContent({
     model: "gemini-embedding-001",
     contents: text,

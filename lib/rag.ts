@@ -1,8 +1,12 @@
 import { GoogleGenAI } from "@google/genai";
 import { searchChunks } from "@/lib/search";
 
-const ai = new GoogleGenAI({ apiKey: process.env.GEMINI_API_KEY! });
 const CHAT_MODEL = "gemini-3.8-flash";
+
+function getAiClient(): GoogleGenAI {
+  const apiKey = process.env.GEMINI_API_KEY || "placeholder-key";
+  return new GoogleGenAI({ apiKey });
+}
 
 interface RAGResponse {
   answer: string;
@@ -14,6 +18,10 @@ export async function generateAnswer(
   userId: string,
   documentId?: string
 ): Promise<RAGResponse> {
+  if (!process.env.GEMINI_API_KEY) {
+    throw new Error("GEMINI_API_KEY environment variable is required for AI question answering.");
+  }
+
   const chunks = await searchChunks(question, userId, 5, documentId);
 
   if (chunks.length === 0) {
@@ -38,6 +46,7 @@ Question: ${question}
 
 Answer:`;
 
+  const ai = getAiClient();
   const response = await ai.models.generateContent({
     model: CHAT_MODEL,
     contents: prompt,
